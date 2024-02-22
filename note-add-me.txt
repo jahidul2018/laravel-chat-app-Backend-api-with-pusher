@@ -1,0 +1,35 @@
+composer create-project laravel/laravel chat-api => laravel/laravel chat-api create app
+
+=> composer require laravel/sanctum
+    => php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+=> php artisan migrate
+
+=> composer require beyondcode/laravel-websockets
+    => php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
+=> php artisan migrate
+=> php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
+
+=> composer require pusher/pusher-php-server "~3.0"
+
+=> php artisan make:controller Auth\RegisterController   
+=> php artisan make:controller Auth\LoginController
+=> php artisan make:controller ChatController
+
+=> php artisan make:model Chat -m
+=> php artisan make:model ChatMessages -m
+
+
+=> php artisan make:migration chat_user
+
+
+
+=> php artisan make:request Auth\RegistrationRequest
+=> php artisan make:request Auth\LoginRequest
+=> php artisan make:request Chat\CreateChatRequest
+=> php artisan make:request Chat\SendTextMessageRequest
+
+
+=> php artisan make:resource ChatResource
+=> php artisan make:resource MassageResource
+
+=> php artisan make:event ChatMessageStatus
